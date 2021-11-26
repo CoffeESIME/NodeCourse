@@ -10,11 +10,12 @@ exports.bicicleta_create_get=function(req,res){
 }
 
 exports.bicicleta_create_post=function(req,res){
-    var bici = new Bicicleta(req.body.datosCrearBici.id,req.body.datosCrearBici.color,req.body.datosCrearBici.modelo);
-    bici.ubicacion=[req.body.datosCrearBici.lat, req.body.datosCrearBici.lng];
-    console.log(req.body)
+    var bici = new Bicicleta(req.body.id,req.body.color,req.body.modelo);
+    bici.ubicacion=[req.body.lat, req.body.lng];
     Bicicleta.add(bici)
-    res.redirect('/bicicletas');
+    //res.redirect('/bicicletas');
+    res.statusCode=200;
+    res.end(JSON.stringify(Bicicleta.allBicis));
 
 }
 
@@ -24,7 +25,6 @@ exports.bicicleta_update_get=function(req,res){
 }
 
 exports.bicicleta_update_post=function(req,res){
-    console.log(req.body)
     var bici= Bicicleta.findById(req.params.id);
     bici.id=req.body.datosModalEditar.id;
     bici.color= req.body.datosModalEditar.color;
