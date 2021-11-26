@@ -32,7 +32,7 @@ exports.bicicleta_update_post=function(req,res){
     bici.id=req.body.datosModalEditar.id;
     bici.color= req.body.datosModalEditar.color;
     bici.modelo=req.body.datosModalEditar.modelo;
-    bici.ubicacion=[req.body.datosModalEditar.ubicacion[0], req.body.datosModalEditar.ubicacion[1]];
+    bici.ubicacion=[req.body.datosModalEditar.lat, req.body.datosModalEditar.lng];
     //res.redirect('/bicicletas');
     res.statusCode=200;
     res.end(JSON.stringify(Bicicleta.allBicis));
